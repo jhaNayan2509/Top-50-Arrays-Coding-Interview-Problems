@@ -1,0 +1,89 @@
+//C++
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> ans;
+        set<vector<int>> mySet;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int k = j + 1; k < n; k++) {
+                    int sum = nums[i] + nums[j] + nums[k];
+
+                    if (sum == 0) {
+                        vector<int> temp = {nums[i], nums[j], nums[k]};
+                        
+                        if (mySet.find(temp) == mySet.end()) {
+                            mySet.insert(temp);
+                        }
+                    }
+                }
+            }
+        }
+
+        for (auto x : mySet) {
+            ans.push_back(x);
+        }
+        return ans;
+    }
+};
+
+//Java
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        int n = nums.length;
+        Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<>();
+        Set<List<Integer>> set = new HashSet<>();
+
+        for(int i = 0; i<n; i++){
+            for(int j = i+1; j<n; j++){
+                for(int k = j+1; k<n; k++){
+                    int sum = nums[i]+nums[j]+nums[k];
+
+                    if(sum == 0){
+                        List<Integer> al = new ArrayList<>();
+                        al.add(nums[i]);
+                        al.add(nums[j]);
+                        al.add(nums[k]);
+                         
+                        if(set.contains(al)==false){
+                            set.add(al);
+                        }
+                    }
+                }
+            }
+        }
+
+        for(List<Integer> x : set){
+            ans.add(x);
+        }
+        return ans;
+    }
+}
+
+
+//Python 3
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+        nums.sort()
+        ans = []
+        mySet = set()
+
+        for i in range(n):
+            for j in range(i + 1, n):
+                for k in range(j + 1, n):
+                    _sum = nums[i] + nums[j] + nums[k]
+
+                    if _sum == 0:
+                        temp = [nums[i], nums[j], nums[k]]
+
+                        if tuple(temp) not in mySet:
+                            mySet.add(tuple(temp))
+
+        ans = [list(x) for x in mySet]
+        return ans
