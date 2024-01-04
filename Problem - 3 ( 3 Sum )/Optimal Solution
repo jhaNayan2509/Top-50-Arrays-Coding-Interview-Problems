@@ -1,0 +1,110 @@
+//C++
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> ans;
+        set<vector<int>> mySet;
+
+        for(int i = 0; i < n; i++){
+            int j = i + 1;
+            int k = n - 1;
+
+            while(j < k){
+                int sum = nums[i] + nums[j] + nums[k];
+
+                if(sum == 0){
+                    vector<int> temp = {nums[i], nums[j], nums[k]};
+                    mySet.insert(temp);
+                    j++;
+                    k--;
+                }
+                else if(sum < 0){
+                    j++;
+                }
+                else if(sum > 0){
+                    k--;
+                }
+            }
+        }
+
+        for(auto x : mySet){
+            ans.push_back(x);
+        }
+        return ans;
+    }
+};
+
+
+//Java
+class Solution {
+    public List<List<Integer>> threeSum(int[] arr) {
+        int n = arr.length;
+        Arrays.sort(arr);
+        List<List<Integer>> ans = new ArrayList<>();
+        Set<List<Integer>> set = new HashSet<>();
+
+        for(int i = 0; i<n; i++){
+           int j = i+1;
+           int k = n-1;
+
+           while(j<k){
+
+                    int sum = arr[i]+arr[j]+arr[k];
+
+                    if(sum == 0){
+                        List<Integer> al = new ArrayList<>();
+                        al.add(arr[i]);
+                        al.add(arr[j]);
+                        al.add(arr[k]);
+                         
+                        
+                        set.add(al);
+                        j++;
+                        k--;
+                    }
+                    else if(sum < 0){
+                        j++;
+                    }
+                    else if (sum > 0){
+                        k--;
+                    }
+           }
+        }
+
+        for(List<Integer> x : set){
+            ans.add(x);
+        }
+        return ans;
+    }
+}
+
+//Python
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+        nums.sort()
+        ans = []
+        mySet = set()
+
+        for i in range(n):
+            j = i + 1
+            k = n - 1
+
+            while j < k:
+                total = nums[i] + nums[j] + nums[k]
+
+                if total == 0:
+                    temp = [nums[i], nums[j], nums[k]]
+                    mySet.add(tuple(temp))
+                    j += 1
+                    k -= 1
+                elif total < 0:
+                    j += 1
+                elif total > 0:
+                    k -= 1
+
+        for x in mySet:
+            ans.append(list(x))
+        return ans
