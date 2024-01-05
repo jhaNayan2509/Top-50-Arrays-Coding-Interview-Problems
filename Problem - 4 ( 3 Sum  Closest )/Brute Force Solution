@@ -1,0 +1,86 @@
+//C++
+
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        int mindiff = INT_MAX;
+        int n = nums.size();
+
+        int ans = 0;
+
+        for(int i = 0; i < n; i++) {
+            for(int j = i + 1; j < n; j++) {
+                for(int k = j + 1; k < n; k++) {
+                    int sum = nums[i] + nums[j] + nums[k];
+
+                    if(sum == target) return target;
+                    else {
+                        int diff = abs(target - sum);
+
+                        if(diff < mindiff) {
+                            mindiff = diff;
+                            ans = sum;
+                        }
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+//Java
+
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        int mindiff = Integer.MAX_VALUE;
+        int n = nums.length;
+
+        int ans = 0;
+
+        for(int i =0; i<n; i++){
+            for(int j = i+1; j<n; j++){
+                for(int k =j+1; k<n; k++){
+                    int sum = nums[i]+nums[j]+nums[k];
+
+                    if(sum == target) return target;
+
+                    else{
+                        int diff = Math.abs(target - sum);
+
+                        if(diff<mindiff){
+                            mindiff = diff;
+                            ans = sum;
+                        }
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+}
+
+//Python3
+
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        mindiff = float('inf')
+        n = len(nums)
+
+        ans = 0
+
+        for i in range(n):
+            for j in range(i + 1, n):
+                for k in range(j + 1, n):
+                    sum_val = nums[i] + nums[j] + nums[k]
+
+                    if sum_val == target:
+                        return target
+                    else:
+                        diff = abs(target - sum_val)
+
+                        if diff < mindiff:
+                            mindiff = diff
+                            ans = sum_val
+
+        return ans
