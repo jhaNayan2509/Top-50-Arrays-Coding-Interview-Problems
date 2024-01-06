@@ -1,0 +1,61 @@
+//C++
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        vector<int> ans(2, 0);
+        int n = numbers.size();
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int _sum = numbers[i] + numbers[j];
+
+                if (_sum == target) {
+                    ans[0] = i + 1;
+                    ans[1] = j + 1;
+                    return ans;
+                }
+            }
+        }
+
+        return ans;
+    }
+};
+
+//Java
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        int n = numbers.length;
+        int[] ans = new int[2];
+        
+        for(int i=0; i<n; i++){
+            for(int j=i+1; j<n; j++){
+                int sum = numbers[i] + numbers[j];
+
+                if(sum == target){
+                    ans[0] = i+1;
+                    ans[1] = j+1;
+                    return ans;
+                }
+            }
+        }
+
+        return ans;
+    }
+}
+
+//Python
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        n = len(numbers)
+        ans = [0, 0]
+
+        for i in range(n):
+            for j in range(i + 1, n):
+                _sum = numbers[i] + numbers[j]
+
+                if _sum == target:
+                    ans[0] = i + 1
+                    ans[1] = j + 1
+                    return ans
+
+        return ans
