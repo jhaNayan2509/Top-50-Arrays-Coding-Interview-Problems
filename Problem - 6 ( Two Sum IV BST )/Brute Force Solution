@@ -1,0 +1,77 @@
+//C++
+
+class Solution {
+public:
+    vector<int> al;
+
+    void inorder(TreeNode* root) {
+        if (root == nullptr) return;
+
+        inorder(root->left);
+        al.push_back(root->val);
+        inorder(root->right);
+    }
+
+    bool findTarget(TreeNode* root, int k) {
+        inorder(root);
+
+        for (int i = 0; i < al.size(); i++) {
+            for (int j = i + 1; j < al.size(); j++) {
+                int sum = al[i] + al[j];
+
+                if (sum == k) return true;
+            }
+        }
+
+        return false;
+    }
+};
+
+
+//Java
+class Solution {
+    ArrayList<Integer> al = new ArrayList<>();
+
+    public void inorder(TreeNode root){
+        if(root == null) return;
+
+        inorder(root.left);
+        al.add(root.val);
+        inorder(root.right);
+    }
+
+    public boolean findTarget(TreeNode root, int k) {
+        inorder(root);
+
+        for(int i=0; i<al.size(); i++){
+            for(int j= i+1; j<al.size(); j++){
+                int sum = al.get(i) + al.get(j);
+
+                if(sum == k) return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+
+//Python3
+
+class Solution:
+    def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
+        def inorder(node):
+            if node:
+                inorder(node.left)
+                self.al.append(node.val)
+                inorder(node.right)
+
+        self.al = []
+        inorder(root)
+
+        for i in range(len(self.al)):
+            for j in range(i + 1, len(self.al)):
+                if self.al[i] + self.al[j] == k:
+                    return True
+
+        return False
