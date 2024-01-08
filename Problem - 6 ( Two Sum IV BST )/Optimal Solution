@@ -1,0 +1,100 @@
+//C++
+// C++ template
+class Solution {
+public:
+    vector<int> vec;
+
+    void inorder(TreeNode* root) {
+        if (root == nullptr)
+            return;
+
+        inorder(root->left);
+        vec.push_back(root->val);
+        inorder(root->right);
+    }
+
+    bool findTarget(TreeNode* root, int k) {
+        inorder(root);
+
+        int n = vec.size();
+
+        int i = 0;
+        int j = n - 1;
+
+        while (i < j) {
+            int sum = vec[i] + vec[j];
+
+            if (sum == k)
+                return true;
+            else if (sum < k)
+                i++;
+            else if (sum > k)
+                j--;
+        }
+
+        return false;
+    }
+};
+
+
+//Java
+class Solution {
+    ArrayList<Integer> al = new ArrayList<>();
+
+    public void inorder(TreeNode root){
+        if(root == null) return;
+
+        inorder(root.left);
+        al.add(root.val);
+        inorder(root.right);
+    }
+
+    public boolean findTarget(TreeNode root, int k) {
+        inorder(root);
+
+        int n = al.size();
+
+        int i = 0;
+        int j = n-1;
+
+        while(i<j){
+                int sum = al.get(i) + al.get(j);
+
+                if(sum == k) return true;
+
+                else if(sum<k) i++;
+                else if(sum>k) j--;
+            
+        }
+
+        return false;
+    }
+}
+
+//Python3
+
+class Solution:
+    def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
+        def inorder(node):
+            if node:
+                inorder(node.left)
+                self.vec.append(node.val)
+                inorder(node.right)
+
+        self.vec = []
+        inorder(root)
+
+        i, j = 0, len(self.vec) - 1
+
+        while i < j:
+            curr_sum = self.vec[i] + self.vec[j]
+
+            if curr_sum == k:
+                return True
+            elif curr_sum < k:
+                i += 1
+            elif curr_sum > k:
+                j -= 1
+
+        return False
+
