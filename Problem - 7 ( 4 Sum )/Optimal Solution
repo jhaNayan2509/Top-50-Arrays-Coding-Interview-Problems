@@ -1,0 +1,107 @@
+//C++
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        int n = nums.size();
+
+        vector<vector<int>> ans;
+        sort(nums.begin(), nums.end());
+
+        set<vector<int>> uniqueSets;
+
+        for(int i = 0; i < n; i++){
+            for(int j = i + 1; j < n; j++){
+                int k = j + 1;
+                int l = n - 1;
+
+                while(k < l){
+                    long long sum = static_cast<long long>(nums[i]) + nums[j] + nums[k] + nums[l];
+
+                    if(sum == target){
+                        vector<int> quadruplet = {nums[i], nums[j], nums[k], nums[l]};
+                        uniqueSets.insert(quadruplet);
+                        k++;
+                        l--;
+                    }
+                    else if(sum < target) k++;
+                    else if(sum > target) l--;
+                }
+            }
+        }
+        
+        ans.assign(uniqueSets.begin(), uniqueSets.end());
+        return ans;
+    }
+};
+
+//Java
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        int n = nums.length;
+
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(nums);
+
+        Set<List<Integer>> set = new HashSet<>();
+
+        for(int i=0; i<n; i++){
+            for(int j=i+1; j<n; j++){
+                int k = j+1;
+                int l = n-1;
+
+                while(k<l){
+                        long sum = (long) nums[i]+nums[j]+nums[k]+nums[l];
+
+                        if(sum == target){
+                            List<Integer> al = new ArrayList<>();
+                            al.add(nums[i]);
+                            al.add(nums[j]);
+                            al.add(nums[k]);
+                            al.add(nums[l]);
+
+                            set.add(al);
+                            k++;
+                            l--;
+                        }
+
+                        else if(sum < target) k++;
+                        else if(sum > target) l--;
+                    
+                }
+            }
+        }
+        
+        ans.addAll(set);
+        return ans;
+    }
+}
+
+//Python3
+class Solution:
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        n = len(nums)
+        nums.sort()
+
+        ans = []
+        unique_set = set()
+
+        for i in range(n):
+            for j in range(i + 1, n):
+                k = j + 1
+                l = n - 1
+
+                while k < l:
+                    total_sum = nums[i] + nums[j] + nums[k] + nums[l]
+
+                    if total_sum == target:
+                        temp = [nums[i], nums[j], nums[k], nums[l]]
+                        unique_set.add(tuple(temp))
+                        k += 1
+                        l -= 1
+                    elif total_sum < target:
+                        k += 1
+                    elif total_sum > target:
+                        l -= 1
+
+        ans = list(unique_set)
+        return ans
