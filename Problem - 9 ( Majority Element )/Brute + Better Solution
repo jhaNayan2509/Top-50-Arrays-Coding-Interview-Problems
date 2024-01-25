@@ -1,0 +1,115 @@
+//C++
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int n = nums.size();
+
+        // Brute-Force Solution
+        // for(int i = 0; i < n; i++){
+        //     int count = 0;
+        //     for(int j = 0; j < n; j++){
+        //         if(nums[i] == nums[j]){
+        //             count++;
+        //         }
+        //     }
+
+        //     if(count > (n / 2))
+        //         return nums[i];
+        // }
+
+        // return -1;
+
+        // Sorting -> Better Solution (i)
+        // sort(nums.begin(), nums.end());
+        // return nums[n / 2];
+
+        // Hashing -> Better Solution (ii)
+        unordered_map<int, int> map;
+
+        for(int i = 0; i < n; i++){
+            map[nums[i]] = map[nums[i]] + 1;
+        }
+
+        for(int i = 0; i < n; i++){
+            if(map[nums[i]] > n / 2)
+                return nums[i];
+        }
+        return -1;
+    }
+};
+
+//Java
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        int n = nums.length;
+
+        //Brute-Force Solution
+        // for(int i = 0; i<n; i++){
+        //     int count = 0;
+        //     for(int j = 0; j<n; j++){
+        //         if(nums[i] == nums[j]){
+        //             count++;
+        //         }
+        //     }
+
+        //     if(count > (n/2))
+        //     return nums[i];
+        // }
+
+        // return -1;
+
+
+        //Sorting -> Better Solution (i)
+        // Arrays.sort(nums);
+        // return nums[n/2];
+
+        //Hashing -> Better Solution (ii)
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        for(int i =0; i<n; i++){
+            map.put(nums[i], map.getOrDefault(nums[i],0)+1);
+        }
+
+        for(int i= 0; i<n; i++){
+            if(map.get(nums[i])>n/2)
+            return nums[i];
+        }
+        return -1;
+    }
+}
+
+
+//Python3
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        n = len(nums)
+
+        # Brute-Force Solution
+        # for i in range(n):
+        #     count = 0
+        #     for j in range(n):
+        #         if nums[i] == nums[j]:
+        #             count += 1
+
+        #     if count > (n / 2):
+        #         return nums[i]
+
+        # return -1
+
+        # Sorting -> Better Solution (i)
+        # nums.sort()
+        # return nums[n // 2]
+
+        # Hashing -> Better Solution (ii)
+        map = {}
+
+        for i in range(n):
+            map[nums[i]] = map.get(nums[i], 0) + 1
+
+        for i in range(n):
+            if map[nums[i]] > n / 2:
+                return nums[i]
+        return -1
