@@ -1,0 +1,110 @@
+//C++
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+       int n = nums.size();
+
+        // Optimal Solution: Moore's Voting Algorithm
+
+        int count = 0;
+        int majelement = 0;
+
+        // 1st pass
+        for (int i = 0; i < n; i++) {
+            if (count == 0)
+                majelement = nums[i];
+
+            if (majelement == nums[i])
+                count++;
+            else
+                count--;
+        }
+
+        // 2nd Pass
+        int chkCount = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (majelement == nums[i])
+                chkCount++;
+        }
+
+        if (chkCount > n / 2) 
+            return majelement;
+
+        return -1;
+    }
+};
+
+
+
+//Java
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        int n = nums.length;
+
+        //Optimal Solution: Moore's Voting Algorithm
+    
+        int count = 0;
+        int majelement = 0;
+
+        //1st pass
+        for(int i = 0; i<n; i++){
+            if(count == 0)
+            majelement = nums[i];
+
+            if(majelement == nums[i])
+            count++;
+            else
+            count--;
+        }
+
+        //2nd Pass
+        int chkCount = 0;
+
+        for(int i  = 0; i<n; i++){
+            if(majelement == nums[i])
+            chkCount++;
+        }
+
+        if(chkCount> n/2) 
+        return majelement;
+
+        return -1;
+    }
+}
+
+//Python3
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        n = len(nums)
+
+        # Optimal Solution: Moore's Voting Algorithm
+
+        count = 0
+        majelement = 0
+
+        # 1st pass
+        for i in range(n):
+            if count == 0:
+                majelement = nums[i]
+
+            if majelement == nums[i]:
+                count += 1
+            else:
+                count -= 1
+
+        # 2nd Pass
+        chkCount = 0
+
+        for i in range(n):
+            if majelement == nums[i]:
+                chkCount += 1
+
+        if chkCount > n // 2:
+            return majelement
+
+        return -1
+
