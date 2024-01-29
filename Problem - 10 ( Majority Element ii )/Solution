@@ -1,0 +1,147 @@
+//C++
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        int n = nums.size();
+
+        vector<int> ans;
+
+        int count1 = 0;
+        int majelement1 = 0;
+        int count2 = 0;
+        int majelement2 = 0;
+
+        for(int i = 0; i < n; i++){
+            if(count1 == 0 && nums[i] != majelement2){
+                count1++;
+                majelement1 = nums[i];
+            }
+
+            else if(count2 == 0 && nums[i] != majelement1){
+                count2++;
+                majelement2 = nums[i];
+            }
+
+            else if (majelement1 == nums[i]) count1++;
+            else if(majelement2 == nums[i]) count2++;
+
+            else{
+                count1--;
+                count2--;
+            }
+        }
+
+        int chkCount1 = 0, chkCount2 = 0;
+
+        for(int i = 0; i < n; i++){
+            if(majelement1 == nums[i]) chkCount1++;
+            if(majelement2 == nums[i]) chkCount2++;
+        }
+
+        if(chkCount1 > (n / 3) && find(ans.begin(), ans.end(), majelement1) == ans.end()) 
+            ans.push_back(majelement1);
+
+        if(chkCount2 > (n / 3) && find(ans.begin(), ans.end(), majelement2) == ans.end())
+            ans.push_back(majelement2);
+
+        return ans;
+    }
+};
+
+
+
+//Java
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        int n = nums.length;
+
+        List<Integer> ans = new ArrayList<>();
+
+        int count1 = 0;
+        int majelement1 = 0;
+        int count2 = 0;
+        int majelement2 = 0;
+
+        for(int i = 0; i < n; i++){
+            if(count1 == 0 && nums[i] != majelement2){
+                count1++;
+                majelement1 = nums[i];
+            }
+
+            else if(count2 == 0 && nums[i] != majelement1){
+                count2++;
+                majelement2 = nums[i];
+            }
+
+            else if (majelement1 == nums[i]) count1++;
+            else if(majelement2 == nums[i]) count2++;
+
+            else{
+                count1--;
+                count2--;
+            }
+        }
+
+        int chkCount1 = 0, chkCount2 = 0;
+
+        for(int i = 0; i<n ; i++){
+            if(majelement1 == nums[i]) chkCount1++;
+            if(majelement2 == nums[i]) chkCount2++;
+        }
+
+
+        if(chkCount1 > (n/3) && ans.contains(majelement1) == false) 
+        ans.add(majelement1);
+
+        if(chkCount2 > (n/3) && ans.contains(majelement2) == false)
+        ans.add(majelement2);
+
+        return ans;
+    }
+}
+
+//Python3
+class Solution:
+    def majorityElement(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+
+        ans = []
+
+        count1 = 0
+        majelement1 = 0
+        count2 = 0
+        majelement2 = 0
+
+        for i in range(n):
+            if count1 == 0 and nums[i] != majelement2:
+                count1 += 1
+                majelement1 = nums[i]
+            elif count2 == 0 and nums[i] != majelement1:
+                count2 += 1
+                majelement2 = nums[i]
+            elif majelement1 == nums[i]:
+                count1 += 1
+            elif majelement2 == nums[i]:
+                count2 += 1
+            else:
+                count1 -= 1
+                count2 -= 1
+
+        chkCount1 = 0
+        chkCount2 = 0
+
+        for i in range(n):
+            if majelement1 == nums[i]:
+                chkCount1 += 1
+            if majelement2 == nums[i]:
+                chkCount2 += 1
+
+        if chkCount1 > (n // 3) and majelement1 not in ans:
+            ans.append(majelement1)
+
+        if chkCount2 > (n // 3) and majelement2 not in ans:
+            ans.append(majelement2)
+
+        return ans
+        
