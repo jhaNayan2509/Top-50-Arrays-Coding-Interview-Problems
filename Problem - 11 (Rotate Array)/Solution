@@ -1,0 +1,62 @@
+//C++
+
+class Solution {
+public:
+    void reverse(vector<int>& nums, int i, int j) {
+        while (i < j) {
+            swap(nums[i],nums[j]);
+            i++;
+            j--;
+        }
+    }
+
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        k = k % n;
+
+        reverse(nums, n - k, n - 1);
+        reverse(nums, 0, n - k - 1);
+        reverse(nums, 0, n - 1);
+    }
+};
+
+//Java
+
+class Solution {
+
+    public void reverse(int[] arr, int i, int j){
+        while(i<j){
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
+    }
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k = k%n;
+
+        reverse(nums,n-k,n-1);
+        reverse(nums,0,n-k-1);
+        reverse(nums,0,n-1);
+    }
+}
+
+//Python3
+
+class Solution:
+    def reverse(self, nums: List[int], i: int, j: int) -> None:
+        while i < j:
+            nums[i], nums[j] = nums[j], nums[i]
+            i += 1
+            j -= 1
+
+    def rotate(self, nums: List[int], k: int) -> None:
+        n = len(nums)
+        k = k % n
+
+        self.reverse(nums, n - k, n - 1)
+        self.reverse(nums, 0, n - k - 1)
+        self.reverse(nums, 0, n - 1)
+        
