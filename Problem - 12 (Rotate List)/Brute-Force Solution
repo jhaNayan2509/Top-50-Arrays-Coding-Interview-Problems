@@ -1,0 +1,132 @@
+//C++
+
+class Solution {
+public:
+    void reverse(vector<int> &vec, int i, int j){
+        while(i<j){
+            swap(vec[i],vec[j]);
+            i++;
+            j--;
+        }
+    }
+
+    ListNode* rotateRight(ListNode* head, int k) {
+        ListNode* curr = head;
+        vector<int> vec;
+
+        // Traverse LL
+        while (curr != nullptr) {
+            vec.push_back(curr->val);
+            curr = curr->next;
+        }
+
+        // Filled vector
+        int n = vec.size();
+
+        if (n == 0) return nullptr;
+
+        k=k%n;
+        
+        //Rotating vector right to k places.
+        reverse(vec,n-k,n-1);
+        reverse(vec,0,n-k-1);
+        reverse(vec,0,n-1);
+
+
+        // Converting vector to LinkedList
+        ListNode* thead = nullptr;
+        ListNode* tcurrent = nullptr;
+
+        for (int value : vec) {
+            ListNode* node = new ListNode(value);
+            if (thead == nullptr) {
+                thead = node;
+                tcurrent = thead;
+            } else {
+                tcurrent->next = node;
+                tcurrent = node;
+            }
+        }
+
+        return thead;
+    }
+};
+
+//Java
+
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+
+        //Brute-Force: T.C.: O(N), S.C.: O(N)
+        ListNode curr = head;
+
+        List<Integer> al = new ArrayList<>();
+        
+        //Traverse LL
+        while(curr!=null){
+            al.add(curr.val);
+            curr = curr.next;
+        }
+
+        //filled arraylist
+        int n = al.size();
+
+
+        if(n==0) return null;
+
+        Collections.rotate(al,k%n);
+        
+        //Converting arraylist to LinkedList
+       
+        ListNode thead = null;
+        ListNode tcurrent = null;
+
+        for (int value : al) {
+            ListNode node = new ListNode(value);
+            if (thead == null) {
+                thead = node;
+                tcurrent = thead;
+            } else {
+                tcurrent.next = node;
+                tcurrent = node;
+            }
+        }
+
+        return thead;
+    }
+}
+
+//Python3
+
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        curr = head
+        arr = []
+
+        # Traverse LL
+        while curr is not None:
+            arr.append(curr.val)
+            curr = curr.next
+
+        # Filled array
+        n = len(arr)
+
+        if n == 0:
+            return None
+
+        arr = arr[-k % n:] + arr[:-k % n]
+
+        # Converting array to LinkedList
+        thead = None
+        tcurrent = None
+
+        for value in arr:
+            node = ListNode(value)
+            if thead is None:
+                thead = node
+                tcurrent = thead
+            else:
+                tcurrent.next = node
+                tcurrent = node
+
+        return thead
