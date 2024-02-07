@@ -1,0 +1,101 @@
+//C++
+
+//Optimal Approach T.C: O(N) S.C.: O(1)
+
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if (head == nullptr)
+            return nullptr;
+
+        ListNode* curr = head;
+        int size = 1;
+
+        // calculating length and making a circular loop
+        while (curr->next != nullptr) {
+            curr = curr->next;
+            ++size;
+        }
+
+        curr->next = head;
+
+        // cut from the rotating point
+        int i = size - (k % size);
+
+        while (i > 1) {
+            head = head->next;
+            i--;
+        }
+
+        curr = head->next;
+        head->next = nullptr;
+        return curr;
+    }
+};
+
+//Java
+
+//Optimal Approach T.C: O(N) S.C.: O(1)
+
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+
+        if(head == null)
+        return null;
+
+        ListNode curr = head;
+
+        int size = 1;
+
+        //calculating length and making a circular loop
+        while(curr.next!=null){
+            curr = curr.next;
+            ++size;
+        }
+
+        curr.next = head;
+
+        //cut from the rotating point
+
+        int i = size-(k%size);
+        
+        while(i>1){
+            head = head.next;
+            i--;
+        }
+
+        curr = head.next;
+        head.next = null;
+        return curr;
+    }
+}
+
+//Python3
+
+//Optimal Approach T.C: O(N) S.C.: O(1)
+
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if head is None:
+            return None
+
+        curr = head
+        size = 1
+
+        # calculating length and making a circular loop
+        while curr.next is not None:
+            curr = curr.next
+            size += 1
+
+        curr.next = head
+
+        # cut from the rotating point
+        i = size - (k % size)
+
+        while i > 1:
+            head = head.next
+            i -= 1
+
+        curr = head.next
+        head.next = None
+        return curr
