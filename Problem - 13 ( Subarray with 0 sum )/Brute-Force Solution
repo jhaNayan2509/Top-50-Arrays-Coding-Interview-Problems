@@ -1,0 +1,58 @@
+//C++
+
+class Solution{
+    public:
+    //Complete this function
+    //Function to check whether there is a subarray present with 0-sum or not.
+    bool subArrayExists(int arr[], int n)
+    {
+        //Your code here
+        for(int i =0; i<n; i++){
+            int sum = 0;
+            for(int j = i; j<n; j++){
+                sum+=arr[j];
+                
+                if(sum == 0) return 1;
+            }
+        }
+        
+        return 0;
+    }
+};
+
+//Java
+
+class Solution{
+    //Function to check whether there is a subarray present with 0-sum or not.    
+    static boolean findsum(int arr[],int n)
+    {
+        for(int i =0; i<n; i++){
+            int sum = 0;
+            for(int j = i; j<n; j++){
+                sum+=arr[j];
+                
+                if(sum == 0) return true;
+            }
+        }
+        
+        return false;
+    }
+}
+
+//Python3
+
+class Solution:
+    
+    #Function to check whether there is a subarray present with 0-sum or not.
+    def subArrayExists(self,arr,n):
+        ##Your code here
+        #Return true or false
+        for i in range(0,n):
+            sum = 0
+            for j in range(i,n):
+                sum+=arr[j]
+                
+                if sum == 0:
+                 return True
+        
+        return False
