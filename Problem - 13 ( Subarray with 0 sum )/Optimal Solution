@@ -1,0 +1,78 @@
+//C++
+
+class Solution{
+    public:
+    //Complete this function
+    //Function to check whether there is a subarray present with 0-sum or not. T.C.: O(N) S.C.: O(N)
+    bool subArrayExists(int arr[], int n)
+    {
+        //Your code here
+        int sum = 0;
+        map<int,int> map;
+        
+        for(int i =0; i<n; i++){
+            sum = sum+arr[i];
+            
+            if(sum == 0)
+            return 1;
+            
+            if(map.find(sum)!=map.end())
+            return 1;
+            
+            map[sum]=i;
+        }
+        
+        return 0;
+    }
+};
+
+//Java
+
+class Solution{
+    //Function to check whether there is a subarray present with 0-sum or not. T.C.: O(N) S.C.: O(N)
+    static boolean findsum(int arr[],int n)
+    {   
+        Map<Integer,Integer> map = new HashMap<>();
+        
+        int sum = 0;
+        
+        for(int i =0; i<n; i++){
+            sum=sum+arr[i];
+            
+            if(sum == 0)
+            return true;
+            
+            if(map.containsKey(sum) == true)
+            return true;
+            
+            map.put(sum,i);
+        }
+        
+        return false;
+    }
+}
+
+//Python3
+
+class Solution:
+    
+    #Function to check whether there is a subarray present with 0-sum or not.  T.C.: O(N) S.C.: O(N)
+    def subArrayExists(self,arr,n):
+        ##Your code here
+        #Return true or false
+        
+        sum = 0
+        map = {}
+        
+        for i in range(0,n):
+            sum = sum+arr[i]
+            
+            if sum == 0:
+                return True
+                
+            if sum in map:
+                return True
+            
+            map[sum] = i
+        
+        return False
