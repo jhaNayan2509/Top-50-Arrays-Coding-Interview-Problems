@@ -1,0 +1,72 @@
+//C++
+
+class Solution{
+    public:
+    int maxLen(vector<int>&arr, int n)
+    {   
+        // Brute Force Solution T.c.: O(N^2) S.C.: O(1)
+        
+        int max = 0;
+        
+        for(int i = 0; i<n; i++){
+            int sum = 0;
+            for(int j = i; j<n; j++){
+                sum = sum+arr[j];
+                
+                if(sum == 0){
+                    int currlength = j-i+1;
+                    if(currlength>max){
+                        max = currlength;
+                    }
+                }
+            }
+        }
+        return max;
+    }
+};
+
+//Java
+
+class GfG
+{
+    int maxLen(int arr[], int n)
+    {
+        // Brute Force Solution T.c.: O(N^2) S.C.: O(1)
+        int max = 0;
+        
+        for(int i = 0; i<n; i++){
+            int sum = 0;
+            for(int j = i; j<n; j++){
+                sum = sum+arr[j];
+                
+                if(sum == 0){
+                    int currlength = j-i+1;
+                    if(currlength>max){
+                        max = currlength;
+                    }
+                }
+            }
+        }
+        return max;
+    }
+}
+
+//Python3
+
+class Solution:
+    def maxLen(self, n, arr):
+        # Brute Force Solution T.c.: O(N^2) S.C.: O(1)
+        max = 0;
+        
+        for i in range(0,n):
+            sum = 0;
+            
+            for j in range(i,n):
+                
+                sum = sum+arr[j];
+                
+                if sum == 0:
+                    currlength = j-i+1;
+                    if currlength>max:
+                        max = currlength;
+        return max;
