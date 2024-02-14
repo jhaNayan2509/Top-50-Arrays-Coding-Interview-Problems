@@ -56,17 +56,17 @@ class GfG
 class Solution:
     def maxLen(self, n, arr):
         # Brute Force Solution T.c.: O(N^2) S.C.: O(1)
-        max = 0;
+        max = 0
         
         for i in range(0,n):
-            sum = 0;
+            sum = 0
             
             for j in range(i,n):
                 
-                sum = sum+arr[j];
+                sum = sum+arr[j]
                 
                 if sum == 0:
-                    currlength = j-i+1;
+                    currlength = j-i+1
                     if currlength>max:
-                        max = currlength;
-        return max;
+                        max = currlength
+        return max
