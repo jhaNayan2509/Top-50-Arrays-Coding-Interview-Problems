@@ -1,0 +1,70 @@
+//C++
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+
+        //Brute-Force Solution T.C.: O(N^2) S.C.: O(1)
+
+        int n = nums.size();
+
+        int count = 0;
+
+        for(int i=0; i<n; i++){
+            int sum = 0;
+            for(int j = i; j<n; j++){
+                sum= sum+nums[j];
+
+                if(sum == k){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+};
+
+//Java
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+
+        //Brute-Force Solution T.C.: O(N^2) S.C.: O(1)
+        
+        int n = nums.length;
+
+        int count = 0;
+
+        for(int i=0; i<n; i++){
+            int sum = 0;
+            for(int j = i; j<n; j++){
+                sum= sum+nums[j];
+
+                if(sum == k){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}
+
+//Python3
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        # Brute-Force Solution T.C.: O(N^2) S.C.: O(1)
+
+        n = len(nums)
+
+        count = 0
+
+        for i in range(0,n):
+            sum = 0
+            for j in range(i,n):
+                sum= sum+nums[j]
+                
+                if sum == k:
+                    count= count+1
+    
+        return count
