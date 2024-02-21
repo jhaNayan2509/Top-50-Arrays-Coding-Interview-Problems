@@ -1,0 +1,80 @@
+//C++
+
+class Solution {
+public:
+    int numberOfSubarrays(vector<int>& nums, int K) {
+         //Brute-Force Solution T.C.: O(N^3) S.C.: O(1)
+        int n = nums.size();
+
+        int answer = 0;
+
+        for(int i =0; i<n; i++){ // Starting Index of Subarray
+            
+            for(int j = i; j<n; j++){ //Ending Index of Subarray
+               
+               int countOdd = 0; //Variable to store current subarray odd counts
+
+               for(int k=i; k<=j; k++){
+                   if(nums[k]%2!=0)
+                   countOdd++;
+               }
+
+             if(countOdd == K) answer++; //updating our answer
+                
+            }
+
+        }
+        return answer;
+    }
+};
+
+//Java
+
+class Solution {
+    public int numberOfSubarrays(int[] nums, int K) {
+        //Brute-Force Solution T.C.: O(N^3) S.C.: O(1)
+        int n = nums.length;
+
+        int answer = 0;
+
+        for(int i =0; i<n; i++){ // Starting Index of Subarray
+            
+            for(int j = i; j<n; j++){ //Ending Index of Subarray
+               
+               int countOdd = 0; //Variable to store current subarray odd counts
+
+               for(int k=i; k<=j; k++){
+                   if(nums[k]%2!=0)
+                   countOdd++;
+               }
+
+             if(countOdd == K) answer++; //updating our answer
+                
+            }
+
+        }
+        return answer;
+    }
+}
+
+//Python3
+
+class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        # Brute-Force Solution T.C.: O(N^3) S.C.: O(1)
+        n = len(nums)  # Use len() instead of nums.length
+
+        answer = 0
+
+        for i in range(0, n):  # Starting Index of Subarray
+            for j in range(i, n):  # Ending Index of Subarray
+                countOdd = 0  # Variable to store current subarray odd counts
+
+                for m in range(i, j + 1):
+                    if nums[m] % 2 != 0:
+                        countOdd += 1
+
+                if countOdd == k:
+                    answer += 1  # updating our answer
+
+        return answer
