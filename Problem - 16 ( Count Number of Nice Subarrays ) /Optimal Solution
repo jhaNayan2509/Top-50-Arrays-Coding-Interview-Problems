@@ -1,0 +1,123 @@
+//C++
+
+class Solution {
+public:
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        //Optimal Solution T.C.: O(N), S.C.: O(N)
+        int n = nums.size();
+
+        int i=0;
+
+        //Updating even to 0 and odd to 1
+        while(i!=n){
+            if(nums[i]%2!=0)
+            nums[i]=1;
+            else
+            nums[i]=0;
+            i++;
+        }
+
+
+        //Simple use count subarray with sum K problem logic.
+
+        int count =0;
+        unordered_map<int,int> map;
+        int sum=0;
+
+        i=0;
+        while(i!=n){
+            sum+=nums[i];
+            if(sum==k) count++;
+
+            if(map.find(sum-k)!= map.end()){
+                count+=map[sum-k];
+            }
+
+            map[sum]++;
+            i++;
+        }
+        return count;
+    }
+};
+
+//Java
+
+class Solution {
+    public int numberOfSubarrays(int[] nums, int k) {
+        //Optimal Solution T.C.: O(N), S.C.: O(N)
+        int n = nums.length;
+
+        int i=0;
+
+        //Updating even to 0 and odd to 1
+        while(i!=n){
+            if(nums[i]%2!=0)
+            nums[i]=1;
+            else
+            nums[i]=0;
+            i++;
+        }
+
+
+        //Simple use count subarray with sum K problem logic.
+
+        int count =0;
+        Map<Integer,Integer> map = new HashMap<>();
+        int sum=0;
+
+        i=0;
+        while(i!=n){
+            sum+=nums[i];
+            if(sum==k) count++;
+
+            if(map.containsKey(sum-k)){
+                count+=map.get(sum-k);
+            }
+
+            map.put(sum,map.getOrDefault(sum,0)+1);
+            i++;
+        }
+        return count;
+    }
+}
+
+
+//Python3
+
+class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        # Optimal Solution T.C.: O(N), S.C.: O(N)
+        n = len(nums)
+
+        # Updating even to 0 and odd to 1
+        i = 0
+        while i < n:
+            if nums[i] % 2 != 0:
+                nums[i] = 1
+            else:
+                nums[i] = 0
+            i += 1
+
+        # Simple use count subarray with sum K problem logic.
+        count = 0
+        num_map = {}
+        curr_sum = 0
+
+        i = 0
+        while i < n:
+            curr_sum += nums[i]
+
+            if curr_sum == k:
+                count += 1
+
+            if curr_sum - k in num_map:
+                count += num_map[curr_sum - k]
+
+            if curr_sum in num_map:
+                num_map[curr_sum] += 1
+            else:
+                num_map[curr_sum] = 1
+
+            i += 1
+
+        return count
