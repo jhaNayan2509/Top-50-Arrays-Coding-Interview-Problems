@@ -1,0 +1,70 @@
+//C++
+
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+       //Brute-Force: Check all possible subarray Products
+        //T.C.: O(N^2), S.C.: O(1)
+
+        int n = nums.size();
+
+        int maxProduct = INT_MIN;
+
+        for(int i = 0; i<n; i++){
+            int curr_Prod = 1;
+            for(int j = i; j<n; j++){
+                curr_Prod*=nums[j];
+
+                maxProduct = max(curr_Prod, maxProduct);
+            }
+        }
+
+        return maxProduct;
+    }
+};
+
+//Java
+
+class Solution {
+    public int maxProduct(int[] nums) {
+        //Brute-Force: Check all possible subarray Products
+        //T.C.: O(N^2), S.C.: O(1)
+
+        int n = arr.length;
+
+        int maxProduct = Integer.MIN_VALUE;
+
+        for(int i = 0; i<n; i++){
+            int curr_Prod = 1;
+            for(int j = i; j<n; j++){
+                curr_Prod*=nums[j];
+
+                maxProduct = Math.max(curr_Prod, maxProduct);
+            }
+        }
+
+        return maxProduct;
+    }
+}
+
+//Python3
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        #Brute-Force: Check all possible subarray Products
+        #T.C.: O(N^2), S.C.: O(1)
+
+        n = len(nums)
+
+        maxProduct = float('-inf')
+
+        for i in range(0,n):
+            curr_Prod = 1
+            for j in range(i,n):
+                curr_Prod*=nums[j]
+
+                maxProduct = max(curr_Prod, maxProduct)
+            
+        
+
+        return maxProduct
