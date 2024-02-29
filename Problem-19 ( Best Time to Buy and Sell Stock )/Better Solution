@@ -1,0 +1,107 @@
+//C++
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        //Better Solution with extra space: Modified Kadane's Algorithm V.2.0
+        //T.C.: O(N) S.C.: O(N)
+
+        int n = prices.size();
+
+        if(n==1) return 0;
+
+        int diffarray[n-1];
+
+        //Fill the diffarray with element differences
+
+        for(int i = 1; i<n; i++){
+            diffarray[i-1] = prices[i]-prices[i-1];
+        }
+        
+
+        //Apply Simple Kadane's Algorithm
+
+        int maxProfit = 0;
+        int currMax_Profit = 0; 
+
+        for(int i = 0; i<n-1; i++){
+            if(currMax_Profit>0){
+                currMax_Profit+=diffarray[i];
+            }
+
+            else{
+                currMax_Profit=diffarray[i];               
+            }
+
+            maxProfit = max(currMax_Profit,maxProfit);
+        }
+
+        return maxProfit;
+    }
+};
+
+//Java
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        //Better Solution with extra space: Modified Kadane's Algorithm V.2.0
+        //T.C.: O(N) S.C.: O(N)
+
+        int n = prices.length;
+
+        if(n==1) return 0;
+
+        int[] diffarray = new int[n-1];
+
+        //Fill the diffarray with element differences
+
+        for(int i = 1; i<n; i++){
+            diffarray[i-1] = prices[i]-prices[i-1];
+        }
+        
+
+        //Apply Simple Kadane's Algorithm
+
+        int maxProfit = 0;
+        int currMax_Profit = 0; 
+
+        for(int i = 0; i<n-1; i++){
+            if(currMax_Profit>0){
+                currMax_Profit+=diffarray[i];
+            }
+
+            else{
+                currMax_Profit=diffarray[i];               
+            }
+
+            maxProfit = Math.max(currMax_Profit,maxProfit);
+        }
+
+        return maxProfit;
+    }
+}
+
+//Python3
+#Better Solution with extra space: Modified Kadane's Algorithm V.2.0
+#T.C.: O(N) S.C.: O(N)
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+
+        if n == 1:
+            return 0
+
+        diffarray = [prices[i]-prices[i-1] for i in range(1, n)]
+
+        maxProfit = 0
+        currMax_Profit = 0
+
+        for i in range(n-1):
+            if currMax_Profit > 0:
+                currMax_Profit += diffarray[i]
+            else:
+                currMax_Profit = diffarray[i]
+
+            maxProfit = max(currMax_Profit, maxProfit)
+
+        return maxProfit
