@@ -1,0 +1,84 @@
+//C++
+
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int> tempList;
+        backtrack(ans, tempList, nums);
+        return ans;
+    }
+    
+    void backtrack(vector<vector<int>>& ans, vector<int>& tempList, vector<int>& nums) {
+        if (tempList.size() == nums.size()) {
+            ans.push_back(tempList);
+        } else {
+            for (int i = 0; i < nums.size(); ++i) {
+                if (find(tempList.begin(), tempList.end(), nums[i]) != tempList.end()) {
+                    continue; // Element already exists, so skip
+                }
+                tempList.push_back(nums[i]); // Adding current element to tempList
+                backtrack(ans, tempList, nums); // Inclusion
+                tempList.pop_back(); // Remove element as soon as process is complete (exclusion)
+            }
+        }
+    }
+};
+
+//Java
+
+class Solution {
+   void backtrack(List<List<Integer>> ans, List<Integer> tempList, int [] nums){
+
+   if(tempList.size() == nums.length){
+      ans.add(new ArrayList<>(tempList));
+   }
+    else{
+
+      for(int i = 0; i < nums.length; i++){ 
+         if(tempList.contains(nums[i])) continue; // element already exists, so skip
+
+         tempList.add(nums[i]); //adding current element to this templist
+
+         //calling backtack method for generating possible permutation by including the element
+         //(inclusion)
+         backtrack(ans, tempList, nums);
+
+         //remove element as soon as process complete
+         //(exclusion)
+         tempList.remove(tempList.size() - 1);
+
+      }
+
+   }
+}
+
+public List<List<Integer>> permute(int[] nums) {
+   List<List<Integer>> ans = new ArrayList<>();
+   List<Integer> empty = new ArrayList<>();
+
+   backtrack(ans, empty, nums);
+   return ans;
+}
+
+}
+
+//Python3
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        def backtrack(ans, tempList, nums):
+            if len(tempList) == len(nums):
+                ans.append(tempList[:])
+            else:
+                for i in range(len(nums)):
+                    if nums[i] in tempList:
+                        continue  # Element already exists, so skip
+                    tempList.append(nums[i])  # Adding current element to tempList
+                    backtrack(ans, tempList, nums)  # Inclusion
+                    tempList.pop()  # Remove element as soon as process is complete (exclusion)
+
+        ans = []
+        tempList = []
+        backtrack(ans, tempList, nums)
+        return ans
