@@ -1,0 +1,21 @@
+The solution provided generates permutations of a given array of integers using backtracking. Let's analyze the time complexity and space complexity:
+
+Time Complexity:
+
+- The time complexity depends on the number of permutations generated.
+- Each recursive call of the `backtrack` function generates permutations by exploring all possible choices for each position.
+- In each recursive call, there's a loop that iterates over all elements in the array (`nums.length`).
+- Inside the loop, there's a constant-time operation to check if the element already exists in the `tempList`.
+- Overall, the time complexity can be expressed as O(n!), where n is the length of the input array `nums`. This is because there are n! permutations of n elements.
+
+Space Complexity:
+
+- The space complexity primarily depends on the recursive stack space used by the backtracking algorithm.
+- In each recursive call, a new `tempList` is created, which at most can hold all elements of the input array `nums`.
+- The space complexity of the recursive stack can be expressed as O(n), where n is the length of the input array `nums`.
+- Additionally, the space used by the `ans` list also contributes to space complexity. However, it grows with the number of permutations generated, which is O(n!) as discussed above.
+- Therefore, the overall space complexity is O(n + n!) ≈ O(n!).
+
+Conclusion:
+- Time Complexity: O(n!)
+- Space Complexity: O(n + n!)
