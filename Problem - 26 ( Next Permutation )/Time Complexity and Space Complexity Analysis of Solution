@@ -1,0 +1,8 @@
+Let's talk about the time and space complexity for the solution.
+
+
+Time Complexity:   O(n), where n is the number of elements in the nums vector. 
+                   The time complexity arises from traversing the array to find the pivot point, swapping elements, and reversing subarrays.
+
+
+Space Complexity: O(1) - The algorithm uses constant extra space, mainly for storing temporary variables and indices.
