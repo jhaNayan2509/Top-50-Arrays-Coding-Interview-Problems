@@ -1,0 +1,21 @@
+Let's talk about the time and space complexity for the solution that merges two sorted arrays, nums1 and nums2.
+
+Time Complexity:
+
+- The primary loop in the merge function iterates through both arrays simultaneously until either i or j becomes negative.
+- In each iteration, we compare elements from nums1 and nums2 and place the larger element at the end of nums1.
+- Since we traverse both arrays once, the time complexity is O(m + n), where:
+     - m is the length of nums1.
+     - n is the length of nums2.
+
+
+Space Complexity:
+
+- The space complexity refers to the additional memory used by the algorithm.
+- In this case, the algorithm modifies nums1 in-place without using any additional data structures.
+- Therefore, the space complexity is O(1) (constant space), as we do not allocate any extra memory proportional to the input sizes.
+
+In summary:
+
+Time Complexity: O(m + n)
+Space Complexity: O(1)
