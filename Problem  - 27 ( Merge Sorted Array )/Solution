@@ -1,0 +1,124 @@
+//Video Solution: 
+
+//C++
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int i=m-1; //last index of original nums1 array
+        int j=n-1; //last index of nums2 array
+        
+        int k = m+n-1; 
+
+        // last index of answer array( nums1 itself (including zeros)
+        // in our case)
+
+        
+        while(i>=0&&j>=0){
+            if(nums1[i]>nums2[j]){
+                nums1[k]=nums1[i];
+                i--;
+                k--;
+            }
+
+            else if(nums2[j]>=nums1[i]){
+                nums1[k]=nums2[j];
+                j--;
+                k--;
+            }
+
+        }
+        
+        //not necessary
+        while(i>=0){
+            nums1[k]=nums1[i];
+            k--;
+            i--;
+        }
+        
+        while(j>=0){
+            nums1[k]=nums2[j];
+            k--;
+            j--;
+        }
+        
+    }
+};
+
+
+//Java
+
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i=m-1; //last index of original nums1 array
+        int j=n-1; //last index of nums2 array
+        
+        int k = m+n-1; 
+
+        // last index of answer array( nums1 itself (including zeros)
+        // in our case)
+
+
+        while(i>=0&&j>=0){
+            if(nums1[i]>nums2[j]){
+                nums1[k]=nums1[i];
+                i--;
+                k--;
+            }
+
+            else if(nums2[j]>=nums1[i]){
+                nums1[k]=nums2[j];
+                j--;
+                k--;
+            }
+
+        }
+        
+        //not necessary
+        // while(i>=0){
+        //     nums1[k]=nums1[i];
+        //     k--;
+        //     i--;
+        // }
+        
+        while(j>=0){
+            nums1[k]=nums2[j];
+            k--;
+            j--;
+        }
+        
+    }
+}
+
+
+//Python3
+
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        i = m - 1  # last index of original nums1 array
+        j = n - 1  # last index of nums2 array
+        k = m + n - 1  # last index of answer array (nums1 itself, including zeros)
+
+        while i >= 0 and j >= 0:
+            if nums1[i] > nums2[j]:
+                nums1[k] = nums1[i]
+                i -= 1
+                k -= 1
+            else:
+                nums1[k] = nums2[j]
+                j -= 1
+                k -= 1
+
+        # Not necessary
+        while i >= 0:
+            nums1[k] = nums1[i]
+            k -= 1
+            i -= 1
+
+        while j >= 0:
+            nums1[k] = nums2[j]
+            k -= 1
+            j -= 1
