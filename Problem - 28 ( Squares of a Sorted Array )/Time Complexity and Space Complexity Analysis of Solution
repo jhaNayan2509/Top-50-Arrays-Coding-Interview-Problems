@@ -1,0 +1,27 @@
+Let's talk about the time and space complexity for the solution.
+
+Time Complexity:
+    - The code consists of two main parts:
+        1. Squaring all elements in the input array.
+        2. Applying the two-pointer technique to sort the array of squared elements.
+
+    - Let’s analyze each part:
+        1. Squaring all elements takes linear time, O(n), where N is the size of the input array.
+        2. The two-pointer technique also takes linear time, O(n), as it involves iterating through the input array.
+
+    Combining these complexities, the overall time complexity is O(N).
+
+Note: The sorting step is not explicitly performed; instead, the two-pointer technique ensures the sorted order of squared elements.
+
+Space Complexity:
+
+     - The code uses additional memory for the output array (ans) and a few integer variables (i, j, and k).
+     - The space required for the output array is O(n) since it has the same size as the input array.
+     - The integer variables (i, j, and k) occupy constant space.
+  
+    Therefore, the overall space complexity is O(n).
+
+In summary:
+
+Time Complexity: O(n)
+Space Complexity: O(n)
