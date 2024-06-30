@@ -1,0 +1,97 @@
+//Video Solution: https://www.youtube.com/watch?v=4K2UD0Yr7ks
+
+//C++
+
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> ans(n);
+
+        // Square all elements
+        for (int i = 0; i < n; i++) {
+            nums[i] = nums[i] * nums[i];
+        }
+
+        // Apply two pointers technique
+        int i = 0;
+        int j = n - 1;
+        int k = n-1;
+        
+        while(k>=0){
+            if (nums[i] > nums[j]) {
+                ans[k] = nums[i];
+                i++;
+            } else {
+                ans[k] = nums[j];
+                j--;
+            }
+            k--;
+        }
+
+        return ans;
+    }
+};
+
+//Java
+
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+    
+    int n = nums.length;
+
+    int[] ans = new int[n];
+
+    // Square all elements
+    for (int i = 0; i < n; i++) {
+      nums[i] = nums[i] * nums[i];
+    }
+    
+    //Apply two pointers as per the logic we have discussed
+    int i = 0;
+    int j = n - 1;
+    int k = n - 1;
+    
+    while(k>=0){
+
+      if (nums[i] > nums[j]) {
+        ans[k] = nums[i];
+        i++;
+      } 
+      
+      else if(nums[i]<=nums[j]){
+        ans[k] = nums[j];
+        j--;
+      }
+
+    k--;
+
+    }
+
+    return ans;
+    }
+}
+
+//Python3
+
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        ans = [0] * n
+
+        # Square all elements
+        for i in range(n):
+            nums[i] = nums[i] * nums[i]
+
+        # Apply two pointers technique
+        i, j = 0, n - 1
+        
+        for k in range(n - 1, -1, -1):
+            if nums[i] > nums[j]:
+                ans[k] = nums[i]
+                i += 1
+            else:
+                ans[k] = nums[j]
+                j -= 1
+
+        return ans
