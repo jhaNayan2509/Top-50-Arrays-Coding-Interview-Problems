@@ -1,0 +1,72 @@
+//Video Solution: 
+
+//Brute-force Solution: T.C.: O(N^2) S.C.: O(1)
+
+//C++
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> ans(n, 1);
+
+        for (int i = 0; i < n; i++) {
+            int product = 1;
+            for (int j = 0; j < n; j++) {
+                if (i == j)
+                    continue;
+
+                product *= nums[j];
+            }
+
+            ans[i] = product;
+        }
+
+        return ans;
+    }
+};
+
+//Java
+
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+       
+        int n =  nums.length;
+
+        int[] ans = new int[n];
+
+        for(int i = 0; i<n; i++){
+            int product = 1;
+            for(int j = 0; j<n; j++){
+                if(i == j)
+                continue;
+
+                product = product*nums[j];
+            }
+
+            ans[i] = product;
+        }
+
+       return ans;
+
+    }
+}
+
+//Python3
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        ans = [1] * n
+
+        for i in range(n):
+            product = 1
+            for j in range(n):
+                if i == j:
+                    continue
+
+                product *= nums[j]
+
+            ans[i] = product
+
+        return ans
