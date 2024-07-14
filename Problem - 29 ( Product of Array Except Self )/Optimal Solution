@@ -1,0 +1,77 @@
+//Video Solution: 
+
+// Optimal Solution: T.C.: O(n) S.C.: O(1)
+
+//C++
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> ans(n);
+
+        // Calculate pref array (products of all elements to the left of each index)
+        int pref = 1;
+        for (int i = 0; i < n; i++) {
+            ans[i] = pref;
+            pref *= nums[i];
+        }
+
+        // Calculate suff array (products of all elements to the right of each index)
+        int suff = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            ans[i] *= suff;
+            suff *= nums[i];
+        }
+        
+        return ans;
+    }
+};
+
+//Java
+
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        
+        int n = nums.length;
+        
+        int[] ans = new int[n];
+        
+        // Calculate pref array (products of all elements to the left of each index)
+        int pref = 1;
+        for (int i = 0; i < n; i++) {
+            ans[i] = pref;
+            pref *= nums[i];
+        }
+
+        // Calculate suff array (products of all elements to the right of each index)
+        int suff = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            ans[i] *= suff;
+            suff *= nums[i];
+        }
+        
+        return ans;
+    }
+}
+
+//Python3
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        ans = [0] * n
+
+        # Calculate pref array (products of all elements to the left of each index)
+        pref = 1
+        for i in range(n):
+            ans[i] = pref
+            pref *= nums[i]
+
+        # Calculate suff array (products of all elements to the right of each index)
+        suff = 1
+        for i in range(n - 1, -1, -1):
+            ans[i] *= suff
+            suff *= nums[i]
+        
+        return ans
