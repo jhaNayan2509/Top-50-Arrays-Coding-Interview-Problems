@@ -1,0 +1,100 @@
+//Video Solution: 
+// Optimal Solution: T.C.: O(n) S.C.: O(n)
+
+//C++
+
+class Solution {
+public:
+    int findMaxLength(vector<int>& nums) {
+        int n = nums.size();
+        
+        for(int i = 0; i < n; i++) {
+            if(nums[i] == 0) {
+                nums[i] = -1;
+            }
+        }
+
+        unordered_map<int, int> map;
+        int sum = 0;
+        int ans = 0;
+        
+        for(int i = 0; i < n; i++) {
+            sum += nums[i];
+
+            if(sum == 0) {
+                ans = i + 1;
+            }
+
+            if(map.find(sum) != map.end()) {
+                int len = i - map[sum];
+                ans = max(len, ans);
+            } else {
+                map[sum] = i;
+            }
+        }
+        
+        return ans;
+    }
+};
+
+//Java
+
+class Solution {
+    public int findMaxLength(int[] nums) {
+
+        int n = nums.length;
+
+        for(int i = 0; i<n; i++){
+            if(nums[i] == 0)
+            nums[i]=-1;
+        }
+
+        Map<Integer,Integer> map = new HashMap<>();
+
+        int sum = 0;
+        int ans = 0;
+        for(int i = 0; i<n; i++){
+            sum+=nums[i];
+
+            if(sum == 0) ans = i+1;
+
+            if(map.containsKey(sum)){
+                int len = i - map.get(sum);
+                ans = Math.max(len,ans);
+            }
+            else
+            map.put(sum,i);
+        }
+
+        return ans;
+    }
+}
+
+//Python3
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        n = len(nums)
+        
+        # Convert 0s to -1s
+        for i in range(n):
+            if nums[i] == 0:
+                nums[i] = -1
+
+        map = {}
+        sum = 0
+        ans = 0
+        
+        for i in range(n):
+            sum += nums[i]
+
+            if sum == 0:
+                ans = i + 1
+
+            if sum in map:
+                length = i - map[sum]
+                ans = max(length, ans)
+            else:
+                map[sum] = i
+        
+        return ans
