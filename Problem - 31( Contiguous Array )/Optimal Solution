@@ -1,4 +1,7 @@
-//Video Solution: 
+//Pre-requisite Problem (Largest Subarray with 0 sum) Video Solution: https://www.youtube.com/watch?v=cgUVu2oPj34&list=PL4JcMBI4LmknXBJsifFkvdrOix7ukBsHC&index=18
+
+//Video Solution: https://www.youtube.com/watch?v=H-HvlRtsDb0
+
 // Optimal Solution: T.C.: O(n) S.C.: O(n)
 
 //C++
@@ -8,14 +11,14 @@ public:
     int findMaxLength(vector<int>& nums) {
         int n = nums.size();
         
-        //Step-1: Convert 0s to -1s
+       
         for(int i = 0; i < n; i++) {
             if(nums[i] == 0) {
                 nums[i] = -1;
             }
         }
         
-        //Step-2: Apply Logic of finding Largest Subarray with Sum 0
+       
         unordered_map<int, int> map;
         int sum = 0;
         int ans = 0;
@@ -46,13 +49,13 @@ class Solution {
 
         int n = nums.length;
         
-         //Step-1: Convert 0s to -1s
+        
         for(int i = 0; i<n; i++){
             if(nums[i] == 0)
             nums[i]=-1;
         }
         
-        //Step-2: Apply Logic of finding Largest Subarray with Sum 0
+        
         Map<Integer,Integer> map = new HashMap<>();
 
         int sum = 0;
@@ -80,12 +83,12 @@ class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
         n = len(nums)
         
-        # Convert 0s to -1s
+        
         for i in range(n):
             if nums[i] == 0:
                 nums[i] = -1
        
-        # Step-2: Apply Logic of finding Largest Subarray with Sum 0
+        
         map = {}
         sum = 0
         ans = 0
