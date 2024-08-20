@@ -1,0 +1,71 @@
+//Video Solution: https://www.youtube.com/watch?v=gdxRM1_OxJo
+
+//Better Solution (Dual Traversal): T.C.: O(N), S.C.: O(1)
+
+//C++
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        int j = 0;
+
+        // Move all non-zero elements to the front
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != 0) {
+                nums[j] = nums[i];
+                j++;
+            }
+        }
+
+        // Fill the rest of the array with zeros
+        while (j < n) {
+            nums[j] = 0;
+            j++;
+        }
+    }
+};
+
+//Java
+
+class Solution {
+    public void moveZeroes(int[] nums) {
+        
+        int n = nums.length;
+        int j = 0;
+
+        for(int i = 0; i<n; i++){
+            if(nums[i]!=0){
+                //assignment operation
+                nums[j] = nums[i];
+                j++;
+            }
+        }
+
+        while(j<n){
+            nums[j] = 0;
+            j++;
+        }
+    }
+}
+
+//Python3
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        j = 0
+
+        # Move all non-zero elements to the front
+        for i in range(n):
+            if nums[i] != 0:
+                nums[j] = nums[i]
+                j += 1
+
+        # Fill the rest of the list with zeros
+        while j < n:
+            nums[j] = 0
+            j += 1
