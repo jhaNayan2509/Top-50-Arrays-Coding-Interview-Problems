@@ -1,0 +1,57 @@
+//Video Solution: https://www.youtube.com/watch?v=gdxRM1_OxJo
+
+//Optimal Solution (Single Traversal): T.C.: O(N), S.C.: O(1)
+
+//C++
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+       int n = nums.size();
+        int j = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != 0) {
+                // Swap nums[i] with nums[j]
+                swap(nums[i], nums[j]);
+                j++;
+            }
+        }
+    }
+};
+
+//Java
+
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int n = nums.length;
+        int j = 0;
+
+        for(int i = 0; i<n; i++){
+            if(nums[i]!=0){
+                //swapping operation
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+
+                j++;
+            }
+        }
+    }
+}
+
+//Python3
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        j = 0
+
+        for i in range(n):
+            if nums[i] != 0:
+                # Swap nums[i] with nums[j]
+                nums[i], nums[j] = nums[j], nums[i]
+                j += 1
