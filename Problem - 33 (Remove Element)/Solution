@@ -1,0 +1,63 @@
+//Video Solution: https://www.youtube.com/watch?v=5BI1_Hyiu94
+
+//T.C.: O(N), S.C.: O(1)
+
+//C++
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int i = 0;
+        int j = 0;
+        int n = nums.size();
+
+        // Applying Backward-pushing trick
+        while (i != n) {
+            if (nums[i] != val) {
+                swap(nums[i],nums[j]);
+                j++;
+            }
+            i++;
+        }
+        return j;
+    }
+};
+
+//Java
+
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int i=0;
+        int j=0;
+        int n= nums.length;
+
+        //Applying Backward-pushing trick
+        while(i!=n){
+            if(nums[i]!=val){
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+                j++;
+            }
+            i++;
+        }
+        return j;
+    }
+}       
+
+
+//Python3
+
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        i = 0
+        j = 0
+        n = len(nums)
+
+        # Applying Backward-pushing trick
+        while i != n:
+            if nums[i] != val:
+                nums[j], nums[i] = nums[i], nums[j]
+                j += 1
+            i += 1
+        return j
