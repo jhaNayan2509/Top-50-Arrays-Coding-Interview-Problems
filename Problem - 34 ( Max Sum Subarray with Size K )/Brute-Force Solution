@@ -1,0 +1,60 @@
+//Video Solution:
+
+//Brute-force Solution: T.C.: O(N^2) S.C.: O(1)
+
+//C++
+
+class Solution{   
+public:
+    long maximumSumSubarray(int K, vector<int> &Arr , int N){
+        // code here
+        long max = 0;
+
+        for (int i = 0; i < N; i++) {
+            long sum = 0;
+            for (int j = i; j < i + K && j < N; j++) {
+                sum += Arr[j];
+            }
+
+            max = std::max(sum, max);
+        }
+
+        return max;
+    }
+};
+
+//Java
+
+class Solution{
+    static long maximumSumSubarray(int K, ArrayList<Integer> Arr,int N){
+        // code here
+        long max = 0;
+        
+        for(int i = 0; i<N; i++){
+            long sum = 0;
+            for(int j = i; j<i+K&&j<N;j++){
+                sum+=Arr.get(j);
+            }
+            
+            max = Math.max(sum,max);
+        }
+        
+        return max;
+    }
+}
+
+//Python3
+
+class Solution:
+    def maximumSumSubarray (self,K,Arr,N):
+        # code here 
+        max_sum = 0
+
+        for i in range(N):
+            sum_subarray = 0
+            for j in range(i, min(i + K, N)):
+                sum_subarray += Arr[j]
+
+            max_sum = max(sum_subarray, max_sum)
+
+        return max_sum
