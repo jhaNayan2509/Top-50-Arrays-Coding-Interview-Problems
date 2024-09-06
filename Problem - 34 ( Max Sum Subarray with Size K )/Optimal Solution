@@ -1,0 +1,69 @@
+//Video Solution: 
+
+//Optimal Solution ( Using Fixed Size Sliding Window Technique ): T.C.: O(N) S.C.: O(1)
+
+//C++
+
+class Solution{   
+public:
+    long maximumSumSubarray(int K, vector<int> &Arr , int N){
+        // code here
+        long max = 0;
+        long win_sum = 0;
+        int start = 0;
+
+        for (int i = 0; i < N; i++) {
+            win_sum += Arr[i];
+
+            if (i - start + 1 == K) {
+                max = std::max(win_sum, max);
+                win_sum -= Arr[start];
+                start += 1;
+            }
+        }
+
+        return max;
+    }
+};
+
+//Java
+
+class Solution{
+    static long maximumSumSubarray(int K, ArrayList<Integer> Arr,int N){
+        // code here
+        long max = 0;
+        long win_sum = 0;
+        int start = 0;
+        
+        for(int i = 0; i<N; i++){
+            win_sum+=Arr.get(i);
+            
+            if((i-start+1) == K){
+                max = Math.max(win_sum,max);
+                win_sum-=Arr.get(start);
+                start+=1;
+            }
+        }
+        
+        return max;
+    }
+}
+
+//Python3
+
+class Solution:
+    def maximumSumSubarray (self,K,Arr,N):
+        # code here 
+        max_sum = 0
+        win_sum = 0
+        start = 0
+
+        for i in range(N):
+            win_sum += Arr[i]
+
+            if (i - start + 1) == K:
+                max_sum = max(win_sum, max_sum)
+                win_sum -= Arr[start]
+                start += 1
+
+        return max_sum
