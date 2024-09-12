@@ -1,0 +1,84 @@
+//Video Solution: 
+
+//Brute-force Solution: T.C.: O(N^2) S.C.: O(1)
+
+//C++
+
+class Solution {
+public:
+    long long maximumSubarraySum(vector<int>& nums, int k) {
+        long long max = 0;
+        int n = nums.size();
+
+        for (int i = 0; i < n; ++i) {
+            std::unordered_set<int> set;
+            long long sum = 0;
+
+            for (int j = i; j < i + k && j < n; ++j) {
+                if (set.find(nums[j]) != set.end()) {
+                    break;
+                }
+                set.insert(nums[j]);
+                sum += nums[j];
+            }
+
+            if (set.size() == k) {
+                max = std::max(sum, max);
+            }
+        }
+
+        return max;
+    }
+};
+
+//Java
+
+class Solution {
+    public long maximumSubarraySum(int[] nums, int k) {
+        long max = 0;
+        int n = nums.length;
+
+
+        for(int i = 0; i<n; i++){
+            Set<Integer> set = new HashSet<>();
+            int sum = 0;
+
+            for(int j = i; j<i+k && j<n; j++){
+                if(set.add(nums[j]) == false){
+                    break;
+                }
+                sum+=nums[j];
+            }
+
+            if(set.size() == k){
+                max = Math.max(sum,max);
+            }
+        }
+
+        return max;
+    }
+}
+
+//Python3
+
+class Solution:
+    def maximumSubarraySum(self, nums: List[int], k: int) -> int:
+        max_sum = 0
+        n = len(nums)
+
+        for i in range(n):
+            seen = set()
+            current_sum = 0
+
+            for j in range(i, i + k):
+                if j >= n:
+                    break
+                if nums[j] in seen:
+                    break
+                seen.add(nums[j])
+                current_sum += nums[j]
+
+            if len(seen) == k:
+                max_sum = max(max_sum, current_sum)
+
+        return max_sum
