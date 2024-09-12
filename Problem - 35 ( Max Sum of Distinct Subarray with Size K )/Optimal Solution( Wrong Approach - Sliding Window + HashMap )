@@ -1,0 +1,97 @@
+//Video Solution: 
+
+//Optimal Solution (Sliding Window Technique + HashMap ): T.C.: O(N) S.C.: O(N)
+
+//C++
+
+class Solution {
+public:
+    long long maximumSubarraySum(vector<int>& nums, int k) {
+        long long max_sum = 0;
+        long long window_sum = 0;
+        int start = 0;
+        int n = nums.size();
+        std::unordered_map<int, int> map;
+
+        for (int i = 0; i < n; ++i) {
+            window_sum += nums[i];
+            map[nums[i]]++;
+
+            if (i - start + 1 == k) {
+                if (map.size() == k) {
+                    max_sum = std::max(max_sum, window_sum);
+                }
+
+                window_sum -= nums[start];
+                if (--map[nums[start]] == 0) {
+                    map.erase(nums[start]);
+                }
+                ++start;
+            }
+        }
+
+        return max_sum;
+    }
+};
+
+//Java
+
+class Solution {
+    public long maximumSubarraySum(int[] nums, int k) {
+        long max = 0;
+        int n = nums.length;
+        long w_sum = 0;
+        int start = 0;
+
+        Map<Integer,Integer> map = new HashMap<>();
+
+        for(int i = 0; i<n; i++){
+            w_sum+=nums[i];
+
+            map.put(nums[i], map.getOrDefault(nums[i],0)+1);
+
+            if((i-start+1) == k){
+                if(map.size() == k){
+                    max = Math.max(w_sum, max);
+                }
+
+                w_sum-=nums[start];
+                
+                if(map.get(nums[start])<=1)
+                map.remove(nums[start]);
+                else
+                map.put(nums[start], map.getOrDefault(nums[start],0)-1);
+
+                start+=1;
+            }
+        }
+
+        return max;
+    }
+}
+
+//Python3
+
+class Solution:
+    def maximumSubarraySum(self, nums: List[int], k: int) -> int:
+        max_sum = 0
+        window_sum = 0
+        start = 0
+        n = len(nums)
+        count_map = defaultdict(int)
+
+        for i in range(n):
+            window_sum += nums[i]
+            count_map[nums[i]] += 1
+
+            if i - start + 1 == k:
+                if len(count_map) == k:
+                    max_sum = max(max_sum, window_sum)
+
+                window_sum -= nums[start]
+                count_map[nums[start]] -= 1
+                if count_map[nums[start]] == 0:
+                    del count_map[nums[start]]
+                start += 1
+
+        return max_sum
