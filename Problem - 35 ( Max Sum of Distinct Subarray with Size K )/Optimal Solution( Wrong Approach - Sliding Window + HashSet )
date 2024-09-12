@@ -1,0 +1,87 @@
+//Video Solution: 
+
+//Optimal Solution (Sliding Window Technique + HashSet ): T.C.: O(N) S.C.: O(N)
+
+//C++
+
+class Solution {
+public:
+    long long maximumSubarraySum(vector<int>& nums, int k) {
+        long long max_sum = 0;
+        long long window_sum = 0;
+        int start = 0;
+        int n = nums.size();
+        std::unordered_set<int> set;
+
+        for (int i = 0; i < n; ++i) {
+            window_sum += nums[i];
+            set.insert(nums[i]);
+
+            if (i - start + 1 == k) {
+                if (set.size() == k) {
+                    max_sum = std::max(max_sum, window_sum);
+                }
+
+                window_sum -= nums[start];
+                set.erase(nums[start]);
+                ++start;
+            }
+        }
+
+        return max_sum;
+    }
+};
+
+//Java
+
+class Solution {
+    public long maximumSubarraySum(int[] nums, int k) {
+        long max = 0; 
+        int n = nums.length;
+        long w_sum = 0;
+        int start = 0;
+
+        Set<Integer> set = new HashSet<>();
+
+        for(int i = 0; i<n; i++){
+            w_sum+=nums[i];
+
+            set.add(nums[i]);
+
+            if((i-start+1) == k){
+                if(set.size() == k){
+                    max = Math.max(w_sum, max);
+                }
+
+                w_sum-=nums[start];
+                set.remove(nums[start]);
+                start+=1;
+            }
+        }
+
+        return max;
+    }
+}
+
+//Python3
+
+class Solution:
+    def maximumSubarraySum(self, nums: List[int], k: int) -> int:
+        max_sum = 0
+        window_sum = 0
+        start = 0
+        seen = set()
+
+        for i in range(len(nums)):
+            window_sum += nums[i]
+            seen.add(nums[i])
+
+            if i - start + 1 == k:
+                if len(seen) == k:
+                    max_sum = max(max_sum, window_sum)
+
+                window_sum -= nums[start]
+                seen.remove(nums[start])
+                start += 1
+
+        return max_sum
