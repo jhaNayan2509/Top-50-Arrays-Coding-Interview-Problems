@@ -1,0 +1,79 @@
+//Video Solution: https://youtu.be/2AMWaX2Ew6U
+
+//Brute-force Solution: T.C.: O(N^2) S.C.: O(1)
+
+//C++
+
+class Solution {
+public:
+    double findMaxAverage(vector<int>& nums, int k) {
+        double max = numeric_limits<double>::lowest();
+        int n = nums.size();
+
+        for (int i = 0; i < n; i++) {
+            double sum = 0;
+            int count = 0;
+
+            for (int j = i; j < i + k && j < n; j++) {
+                sum += nums[j];
+                count++;
+            }
+
+            if (count == k) {
+                double avg = sum / k;
+                max = std::max(avg, max);
+            }
+        }
+
+        return max;
+    }
+};
+
+//Java
+
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+        double max = Double.NEGATIVE_INFINITY;
+        int n = nums.length;
+
+        for(int i = 0; i<n; i++){
+            double sum = 0;
+            int count = 0;
+
+            for(int j = i; j<i+k&&j<n; j++){
+                sum+=nums[j];
+                count++;
+            }
+
+
+            if(count == k){
+                double avg = sum/k;
+                max = Math.max(avg, max);
+            }
+        }
+
+        return max;
+    }
+}
+
+//Python3
+
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        max_avg = float('-inf')
+        n = len(nums)
+
+        for i in range(n):
+            sum = 0
+            count = 0
+
+            for j in range(i, i + k):
+                if j < n:
+                    sum += nums[j]
+                    count += 1
+
+            if count == k:
+                avg = sum / k
+                max_avg = max(avg, max_avg)
+
+        return max_avg
