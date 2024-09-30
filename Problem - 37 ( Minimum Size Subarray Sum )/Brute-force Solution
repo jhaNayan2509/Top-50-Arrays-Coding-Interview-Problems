@@ -1,0 +1,74 @@
+//Video Solution: https://youtu.be/aaTCBlSZIjg
+
+//Brute-force Solution: T.C.: O(N^2) S.C.: O(1)
+
+//C++
+
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int n = nums.size();
+        int ans = INT_MAX;
+
+        for (int i = 0; i < n; i++) {
+            int sum = 0;
+
+            for (int j = i; j < n; j++) {
+                sum += nums[j];
+
+                if (sum >= target) {
+                    ans = min(ans, j - i + 1);
+                    break;
+                }
+            }
+        }
+
+        return ans == INT_MAX ? 0 : ans;
+    }
+};
+
+//Java
+
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int n = nums.length;
+		    int ans = Integer.MAX_VALUE;
+       
+		
+    		for(int i = 0; i<n; i++){
+    		   int sum = 0;
+    		    
+    		    for(int j = i; j<n; j++)
+                {
+                    sum+=nums[j];
+    
+                    if(sum>=target){
+                        ans = Math.min(ans, j-i+1);
+                        break;
+                    }
+                }
+    		    
+    		}
+		
+		    return ans == Integer.MAX_VALUE?0:ans;
+    }
+}
+
+//Python3
+
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        n = len(nums)
+        ans = float('inf')
+
+        for i in range(n):
+            sum = 0
+
+            for j in range(i, n):
+                sum += nums[j]
+
+                if sum >= target:
+                    ans = min(ans, j - i + 1)
+                    break
+
+        return 0 if ans == float('inf') else ans
