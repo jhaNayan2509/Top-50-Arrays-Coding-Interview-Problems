@@ -1,0 +1,77 @@
+//Video Solution: https://youtu.be/OGDCN9rHL9E
+
+//Solution: T.C.: O(N^2) S.C.: O(1)
+
+Note: The brute force solution to this problem is itself the optimal solution. 
+However, for the higher constraints, we will use a variable-size sliding window. 
+I will discuss this in Problem 39, which is exactly the same as this question but has higher constraints. 
+First you will practice on your own as homework, and then I will explain the detailed solution in the next video while solving Problem 39.
+
+Link to Problem 39 (Homework): https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/description/
+
+
+//C++
+
+class Solution {
+public:
+    int minimumSubarrayLength(vector<int>& nums, int k) {
+        int n = nums.size();
+        int ans = INT_MAX;
+
+        for(int i = 0; i < n; i++) {
+            int val = 0;
+
+            for(int j = i; j < n; j++) {
+                val |= nums[j];
+
+                if(val >= k) {
+                    ans = min(ans, j - i + 1);
+                }
+            }
+        }
+
+        return ans == INT_MAX ? -1 : ans;
+    }
+};
+
+//Java
+
+class Solution {
+    public int minimumSubarrayLength(int[] nums, int k) {
+        int n = nums.length;
+        int ans = Integer.MAX_VALUE;
+
+        for(int i = 0; i<n; i++){
+            int val = 0;
+
+            for(int j = i; j<n; j++){
+                val|=nums[j];
+
+                if(val>=k){
+                    ans = Math.min(ans,j-i+1);
+                }
+            }
+        }
+
+        return ans == Integer.MAX_VALUE?-1:ans;
+
+    }
+}
+
+//Python3
+
+class Solution:
+    def minimumSubarrayLength(self, nums: List[int], k: int) -> int:
+        n = len(nums)
+        ans = float('inf')
+
+        for i in range(n):
+            val = 0
+
+            for j in range(i, n):
+                val |= nums[j]
+
+                if val >= k:
+                    ans = min(ans, j - i + 1)
+
+        return -1 if ans == float('inf') else ans
