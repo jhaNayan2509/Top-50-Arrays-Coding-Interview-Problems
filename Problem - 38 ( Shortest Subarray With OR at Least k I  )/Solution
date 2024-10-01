@@ -3,7 +3,7 @@
 //Solution: T.C.: O(N^2) S.C.: O(1)
 
 Note: The brute force solution to this problem is itself the optimal solution. 
-However, for the higher constraints, we will use a variable-size sliding window ( with some twist ). 
+However, for the higher constraints, we will use a variable-size sliding window + Bit Manipulation ( with some twist ). 
 I will discuss this in Problem 39, which is exactly the same as this question but has higher constraints. 
 First you will practice on your own as homework, and then I will explain the detailed solution in the next video while solving Problem 39.
 
