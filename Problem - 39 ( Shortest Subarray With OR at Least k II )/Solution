@@ -1,0 +1,118 @@
+//Video Solution: https://www.youtube.com/watch?v=xX45VSFtSxY
+
+//Solution: T.C.: O(N) S.C.: O(1)
+
+Pre-requisite Problem (Problem - 38): https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-i/description/
+Solution of (Problem - 38): https://youtu.be/OGDCN9rHL9E
+
+//C++
+
+class Solution {
+public:
+    int minimumSubarrayLength(vector<int>& nums, int k) {
+        int n = nums.size();
+        int start = 0;
+        int w_or = 0;
+        int ans = INT_MAX;
+
+        vector<int> bitCount(32, 0);
+
+        for (int i = 0; i < n; i++) {
+            w_or |= nums[i];
+
+            for (int j = 0; j < 32; j++) {
+                if ((nums[i] & (1 << j)) != 0) {
+                    bitCount[j]++;
+                }
+            }
+
+            while (start <= i && w_or >= k) {
+                ans = min(ans, i - start + 1);
+
+                for (int t = 0; t < 32; t++) {
+                    if ((nums[start] & (1 << t)) != 0) {
+                        bitCount[t]--;
+
+                        if (bitCount[t] == 0) {
+                            w_or = w_or & (~(1 << t));
+                        }
+                    }
+                }
+                start++;
+            }
+        }
+
+        return ans == INT_MAX ? -1 : ans;
+    }
+};
+
+//Java
+
+class Solution {
+    public int minimumSubarrayLength(int[] nums, int k) {
+        int n = nums.length;
+        int start = 0;
+        int w_or = 0;
+        int ans = Integer.MAX_VALUE;
+
+        int[] bitCount = new int[32];
+
+        for(int i = 0; i<n; i++){
+            w_or|=nums[i];
+
+            for(int j = 0; j<32; j++){
+                if((nums[i]&(1<<j)) != 0){
+                    bitCount[j]++;
+                }
+               }
+
+            while(start<=i && w_or>=k){
+              ans = Math.min(ans, i-start+1);
+              
+              for(int t = 0; t<32; t++){
+                    if((nums[start]&(1<<t)) != 0){
+                        bitCount[t]--;
+
+                        if(bitCount[t] == 0){
+                            w_or = w_or & (~(1<<t));
+                        }
+                    }
+                 }
+               start++;
+            }
+        }
+
+        return ans == Integer.MAX_VALUE? -1 : ans;
+    }
+}
+
+//Python3
+
+class Solution:
+    def minimumSubarrayLength(self, nums: List[int], k: int) -> int:
+        n = len(nums)
+        start = 0
+        w_or = 0
+        ans = float('inf')
+
+        bitCount = [0] * 32
+
+        for i in range(n):
+            w_or |= nums[i]
+
+            for j in range(32):
+                if (nums[i] & (1 << j)) != 0:
+                    bitCount[j] += 1
+
+            while start <= i and w_or >= k:
+                ans = min(ans, i - start + 1)
+
+                for t in range(32):
+                    if (nums[start] & (1 << t)) != 0:
+                        bitCount[t] -= 1
+
+                        if bitCount[t] == 0:
+                            w_or &= ~(1 << t)
+                start += 1
+
+        return -1 if ans == float('inf') else ans
