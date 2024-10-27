@@ -1,6 +1,7 @@
 //Video Solution: https://www.youtube.com/watch?v=xX45VSFtSxY
 
-//Solution: T.C.: O(N) S.C.: O(1)
+//Solution: T.C.: O(N) S.C.: O(32) ~ O(1) 
+//Note: O(32) is for bitCount array, but it is also a constant space, So, it is O(1).
 
 Pre-requisite Problem (Problem - 38): https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-i/description/
 Solution of (Problem - 38): https://youtu.be/OGDCN9rHL9E
