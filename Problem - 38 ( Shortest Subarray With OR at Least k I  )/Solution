@@ -5,10 +5,11 @@
 Note: The brute force solution to this problem is itself the optimal solution. 
 However, for the higher constraints, we will use a variable-size sliding window + Bit Manipulation ( with some twist ). 
 I will discuss this in Problem 39, which is exactly the same as this question but has higher constraints. 
+
 First you will practice on your own as homework, and then I will explain the detailed solution in the next video while solving Problem 39.
 
 Link to Problem 39 (Homework): https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/description/
-
+Video Solution of Problem - 39: https://www.youtube.com/watch?v=xX45VSFtSxY
 
 //C++
 
